@@ -67,7 +67,7 @@ cdef class RedirectionsHolder(object):
                     decoded = source.decode("utf-8")
                     decoded = (decoded[0].upper() + decoded[1:]).encode("utf-8")
                     uppercased_in_python = decoded
-                self._redirections[string(uppercased_in_python)] = string(dest)
+                self._redirections[string(uppercased_in_python)] = <string>(dest)
         fclose(cfile)
 
     def __len__(self):
@@ -1049,7 +1049,7 @@ def iterate_anchor_lines(anchor_tags,
                 num_broken += 1
                 continue
 
-            anchor_string = string(anchor)
+            anchor_string = <string>(anchor)
             if visited.find(anchor_string) == visited.end():
                 with gil:
                     try:
@@ -1072,7 +1072,7 @@ def iterate_anchor_lines(anchor_tags,
                     else:
                         num_missing += 1
                         with nogil:
-                            missing.push_back(pair[string, string](anchor_string, string(target)))
+                            missing.push_back(pair[string, string](anchor_string, <string>(target)))
     fclose(cfile)
     pbar.finish()
     print("%d/%d anchor_tags could not be found in wikidata" % (num_missing, num_lines))
