@@ -1,5 +1,5 @@
 cssselect>=0.9.1
-epub-conversion>=1.0.7
+epub-conversion==1.0.7
 lxml>=3.4.3
 msgpack-python>=0.4.8
 numpy>=1.11.1
